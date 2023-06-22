@@ -32,7 +32,15 @@ namespace XamNativeTest
                 HelpshiftSupport.ShowFAQs(this, new System.Collections.Generic.Dictionary<string, object>());
             };
 
-            var stack = new UIStackView(new UIView[] { btn1, btn2 });
+            var btn3 = UIButton.FromType(UIButtonType.System);
+            btn3.TranslatesAutoresizingMaskIntoConstraints = false;
+            btn3.SetTitle("Clear Keychain", UIControlState.Normal);
+
+            btn3.TouchUpInside += (sender, e) => {
+                Keychain.Purge();
+            };
+
+            var stack = new UIStackView(new UIView[] { btn1, btn2, btn3 });
             stack.TranslatesAutoresizingMaskIntoConstraints = false;
             stack.Axis = UILayoutConstraintAxis.Vertical;
             stack.Alignment = UIStackViewAlignment.Center;
